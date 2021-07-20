@@ -14,11 +14,12 @@ LabelHarmonization(
   resolution = 0.5,
   classification.method = c("randomForest", "SVM", "Ensemble"),
   crossvalidationSVM = 10,
-  validatePredictions = TRUE
+  validatePredictions = TRUE,
+  selectanchorfeatures = 2000
 )
 }
 \arguments{
-\item{seurat.objects}{a list of processed seurat objects with Celltypes column in their respective meta.data to perform integration on}
+\item{seurat.objects}{a list of processed seurat objects (please set Default Assay to "RNA") with Celltypes column in their respective meta.data to perform integration on}
 
 \item{perform_integration}{logical Indicator (TRUE or FALSE) to perform integration using list of seurat.objects}
 
@@ -37,7 +38,9 @@ Choices: randomForest (decision trees), SVM (Support Vector Machines) or Ensembl
 
 \item{crossvalidationSVM}{if a integer value k>0 is specified, a k-fold cross validation on the training data is performed to assess the quality of the model}
 
-\item{validatePredictions}{logical indicator (TRUE or FALSE) to asses predictions by computing number of markers shared between assigned celltype and annotated cluster}
+\item{validatePredictions}{logical indicator (TRUE or FALSE) to asses predictions by deploying Gene set enrichment analysis}
+
+\item{selectanchorfeatures}{number of anchor features to use for integrating datasets (Default: 2000)}
 }
 \value{
 integrated seurat object with harmonized celltypes added to meta.data of the object
@@ -46,5 +49,5 @@ integrated seurat object with harmonized celltypes added to meta.data of the obj
 Label Harmonization is a function to harmonize cell labels (celltypes) across single cell datasets.
 It requires a list of processed Seurat Objects with Celltypes column in metadata or a integrated seurat object
 (seurat object with Celltypes and seurat_clusters column in metadata). One can choose from randomForest, SVM or Ensemble classifiction method
-to harmonize celltypes.
+to harmonize celltypes. Please See: DefaultAssay of each object should be set to "RNA"
 }

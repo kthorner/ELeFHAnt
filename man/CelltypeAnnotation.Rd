@@ -11,7 +11,8 @@ CelltypeAnnotation(
   downsample_to = 100,
   classification.method = c("randomForest", "SVM", "Ensemble"),
   crossvalidationSVM = 10,
-  validatePredictions = TRUE
+  validatePredictions = TRUE,
+  selectvarfeatures = 2000
 )
 }
 \arguments{
@@ -28,7 +29,9 @@ Choices: randomForest (decision trees), SVM (Support Vector Machines) or Ensembl
 
 \item{crossvalidationSVM}{if a integer value k>0 is specified, a k-fold cross validation on the training data is performed to assess the quality of the model}
 
-\item{validatePredictions}{logical indicator (TRUE or FALSE) to asses predictions by computing number of markers shared between assigned celltype and annotated cluster}
+\item{validatePredictions}{logical indicator (TRUE or FALSE) to asses predictions by deploying Gene set enrichment analysis}
+
+\item{selectvarfeatures}{number of variable features to select while training (default: 2000)}
 }
 \value{
 query seurat object with predictions added to meta.data of the object
